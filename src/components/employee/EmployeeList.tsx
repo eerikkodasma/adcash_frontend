@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { fetchEmployees } from "../../state/employee/employeeSlice";
-import { EmployeeFormModal } from "./EmployeeFormModal";
 import {
   Employee,
   EmployeeFormData,
@@ -25,12 +24,14 @@ export default function EmployeeList() {
 
   return (
     <div className="container mx-auto p-4">
-      <BaseButton
-        onClick={() => setModalOpen(true)}
-        className="px-3 py-1 mb-2 float-right bg-green-500 text-white rounded text-lg"
-      >
-        + Create new
-      </BaseButton>
+      <div className="mb-2 flex justify-end h-10">
+        <BaseButton
+          onClick={() => setModalOpen(true)}
+          className="px-3 py-1 float-right bg-green-500 text-white rounded text-lg"
+        >
+          + Create new
+        </BaseButton>
+      </div>
       <table className="w-full border-collapse">
         <thead>
           <tr className="text-white text-lg">

@@ -24,7 +24,7 @@ export const employeeService = {
     return response.data;
   },
 
-  async deleteEmployee(id: string) {
+  async deleteEmployee(id: number) {
     const response = await axios.delete(`${API_BASE_URL}/employees/${id}/`);
     return response.data;
   },

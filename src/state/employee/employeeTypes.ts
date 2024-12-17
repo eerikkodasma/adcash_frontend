@@ -1,6 +1,6 @@
 import { Employee } from "../../types/employee";
 
-export interface EmployeeState {
+export interface EmployeeStoreState {
   loading: boolean;
   error: boolean;
   employees: Employee[];

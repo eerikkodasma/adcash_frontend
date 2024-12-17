@@ -1,4 +1,4 @@
-import { EmployeeState } from "./employeeTypes";
+import { EmployeeStoreState } from "./employeeTypes";
 import { employeeService } from "./employeeApi";
 import { Employee, EmployeeFormData } from "../../types/employee";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -11,14 +11,13 @@ export const fetchEmployees = createAsyncThunk(
     try {
       return await employeeService.fetchEmployee();
     } catch (error: any) {
-      const response = rejectWithValue(error.response.data);
       dispatch(
         setAlert({
           message: "Failed to fetch employees",
           type: ALERT_TYPE.DANGER,
         })
       );
-      return response;
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -36,6 +35,12 @@ export const createEmployee = createAsyncThunk(
       );
       return response;
     } catch (error: any) {
+      dispatch(
+        setAlert({
+          message: "Error when creating employee",
+          type: ALERT_TYPE.DANGER,
+        })
+      );
       return rejectWithValue(error.response.data);
     }
   }
@@ -54,6 +59,12 @@ export const updateEmployee = createAsyncThunk(
       );
       return response;
     } catch (error: any) {
+      dispatch(
+        setAlert({
+          message: "Error when updating employee",
+          type: ALERT_TYPE.DANGER,
+        })
+      );
       return rejectWithValue(error.response.data);
     }
   }
@@ -61,7 +72,7 @@ export const updateEmployee = createAsyncThunk(
 
 export const deleteEmployee = createAsyncThunk(
   "employees/deleteEmployee",
-  async (id: string, { rejectWithValue, dispatch }) => {
+  async (id: number, { rejectWithValue, dispatch }) => {
     try {
       const response = await employeeService.deleteEmployee(id);
       dispatch(
@@ -72,14 +83,20 @@ export const deleteEmployee = createAsyncThunk(
       );
       return response;
     } catch (error: any) {
+      dispatch(
+        setAlert({
+          message: "Error when deleting employee",
+          type: ALERT_TYPE.DANGER,
+        })
+      );
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-const initialState: EmployeeState = {
+const initialState: EmployeeStoreState = {
   employees: [],
-  loading: false,
+  loading: true,
   error: false,
 };
 
@@ -119,10 +136,9 @@ const employeesSlice = createSlice({
 
     // Delete Employee
     builder.addCase(deleteEmployee.fulfilled, (state, action) => {
-      const a = state.employees.filter(
+      state.employees = state.employees.filter(
         (employee) => employee.id !== action.meta.arg
       );
-      state.employees = a;
     });
   },
 });

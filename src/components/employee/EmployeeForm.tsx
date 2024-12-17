@@ -12,9 +12,7 @@ import {
 } from "../../state/employee/employeeSlice";
 import { useAppDispatch } from "../../state/hooks";
 import BaseButton from "../base_components/BaseButton";
-import { BaseCloseButton } from "../base_components/BaseCloseButton";
-import { ALERT_TYPE } from "../../state/alert/alertTypes";
-import { setAlert } from "../../state/alert/alertSlice";
+import BaseCloseButton from "../base_components/BaseCloseButton";
 
 export default function EmployeeForm({
   employee,
@@ -47,35 +45,10 @@ export default function EmployeeForm({
       setFormState(initalEmployeeFormState);
       onClose();
     } catch (err: any) {
-      switch (formAction) {
-        case EMPLOYEE_CRUD.CREATE:
-          dispatch(
-            setAlert({
-              message: "Error when creating employee",
-              type: ALERT_TYPE.DANGER,
-            })
-          );
-          break;
-        case EMPLOYEE_CRUD.UPDATE:
-          dispatch(
-            setAlert({
-              message: "Error when updating employee",
-              type: ALERT_TYPE.DANGER,
-            })
-          );
-          break;
-        case EMPLOYEE_CRUD.DELETE:
-          dispatch(
-            setAlert({
-              message: "Error when deleting employee",
-              type: ALERT_TYPE.DANGER,
-            })
-          );
-          break;
-      }
       setErrors(err);
     }
   };
+
   return (
     <>
       <form className="max-w-md mx-auto py-4">
@@ -91,7 +64,6 @@ export default function EmployeeForm({
             }
             maxLength={50}
             className="w-full p-2 border rounded"
-            required
           />
           {errors["first_name"] && (
             <div className="text-red-500 mb-4">*{errors["first_name"]}</div>
@@ -110,7 +82,6 @@ export default function EmployeeForm({
             }
             maxLength={50}
             className="w-full p-2 border rounded"
-            required
           />
           {errors["last_name"] && (
             <div className="text-red-500 mb-4">*{errors["last_name"]}</div>
@@ -129,7 +100,6 @@ export default function EmployeeForm({
             }
             maxLength={50}
             className="w-full p-2 border rounded"
-            required
           />
           {errors["email"] && (
             <div className="text-red-500 mb-4">*{errors["email"]}</div>
@@ -138,7 +108,7 @@ export default function EmployeeForm({
       </form>
 
       <div className="flex justify-end gap-2">
-        {"id" in employee ? (
+        {"id" in formState ? (
           <>
             <BaseButton onClick={() => handleForm(EMPLOYEE_CRUD.UPDATE)}>
               Save
