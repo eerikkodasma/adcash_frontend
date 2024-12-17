@@ -9,7 +9,7 @@ export const fetchEmployees = createAsyncThunk(
   "employees/fetchEmployees",
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      return await employeeService.fetchInfluencers();
+      return await employeeService.fetchEmployee();
     } catch (error: any) {
       const response = rejectWithValue(error.response.data);
       dispatch(

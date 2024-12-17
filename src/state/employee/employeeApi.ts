@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../../App";
 import { Employee, EmployeeFormData } from "../../types/employee";
 
 export const employeeService = {
-  async fetchInfluencers() {
+  async fetchEmployee() {
     const response = await axios.get(`${API_BASE_URL}/employees/`);
     return response.data;
   },
