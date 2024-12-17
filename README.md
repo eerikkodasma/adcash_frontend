@@ -28,6 +28,14 @@ cd <repository-name>
 npm install
 ```
 
+### 3. Create .env file
+
+Create .env file to base directory
+
+```bash
+REACT_APP_API_BASE_URL=http://localhost:8000/api
+```
+
 ## Run application
 
 ```bash
