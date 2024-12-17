@@ -9,7 +9,7 @@ interface ModalProps {
   onClick: () => void;
 }
 
-function BaseButton({
+export default function BaseButton({
   children,
   type = BUTTON_TYPE.BUTTON,
   colorType = BUTTON_COLOR_TYPES.PRIMARY,
@@ -31,5 +31,3 @@ function BaseButton({
     </button>
   );
 }
-
-export default BaseButton;

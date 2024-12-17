@@ -16,7 +16,7 @@ import { BaseCloseButton } from "../base_components/BaseCloseButton";
 import { ALERT_TYPE } from "../../state/alert/alertTypes";
 import { setAlert } from "../../state/alert/alertSlice";
 
-export function EmployeeForm({
+export default function EmployeeForm({
   employee,
   onClose,
 }: {

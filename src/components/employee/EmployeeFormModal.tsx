@@ -1,8 +1,8 @@
-import { EmployeeForm } from "./EmployeeForm";
+import BaseModal from "../base_components/BaseModal";
+import EmployeeForm from "./EmployeeForm";
 import { Employee, EmployeeFormData } from "../../types/employee";
-import { BaseModal } from "../base_components/BaseModal";
 
-export function EmployeeFormModal({
+export default function EmployeeFormModal({
   isOpen,
   employee,
   onClose,

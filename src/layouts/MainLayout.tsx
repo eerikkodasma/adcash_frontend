@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { InfluencerList } from "../components/influencer/InfluencerList";
-import { EmployeeList } from "../components/employee/EmployeeList";
+import InfluencerList from "../components/influencer/InfluencerList";
+import EmployeeList from "../components/employee/EmployeeList";
 import BaseButton from "../components/base_components/BaseButton";
 
-function MainLayout() {
+export default function MainLayout() {
   const enum VIEWS {
     INFLUENCERLIST = "INFLUENCERLIST",
     EMPLOYEELIST = "EMPLOYEELIST",
@@ -47,5 +47,3 @@ function MainLayout() {
     </div>
   );
 }
-
-export default MainLayout;

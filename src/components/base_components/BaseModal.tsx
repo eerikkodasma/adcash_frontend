@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export function BaseModal({
+export default function BaseModal({
   children,
   isOpen,
 }: {

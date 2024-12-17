@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { clearAlert, setAlert } from "../state/alert/alertSlice";
+import { clearAlert } from "../state/alert/alertSlice";
 import { useAppSelector, useAppDispatch } from "../state/hooks";
 import { ALERT_TYPE } from "../state/alert/alertTypes";
 import BaseButton from "./base_components/BaseButton";
 
-export function Alert() {
+export default function Alert() {
   const { message, type } = useAppSelector((state) => state.alert);
   const dispatch = useAppDispatch();
 

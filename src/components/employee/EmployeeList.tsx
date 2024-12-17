@@ -7,9 +7,10 @@ import {
   EmployeeFormData,
   initalEmployeeFormState,
 } from "../../types/employee";
+import EmployeeFormModal from "./EmployeeFormModal";
 import BaseButton from "../base_components/BaseButton";
 
-export function EmployeeList() {
+export default function EmployeeList() {
   const employeeState = useAppSelector((state) => state.employee);
   const dispatch = useAppDispatch();
 
